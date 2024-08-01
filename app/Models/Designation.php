@@ -10,4 +10,8 @@ class Designation extends Model
     use HasFactory;
     protected $table = "designations";
     protected $fillable =["name","description","department_id"];
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
+    }
 }

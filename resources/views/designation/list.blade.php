@@ -28,20 +28,10 @@
                     <th scope="row">{{ $designation->id }}</th>
                     <td>{{ $designation->name }}</td>
                     <td>{{ $designation->description }}</td>
-                    @php
-                        $departmentName = 'N/A';
-                        foreach ($dept as $department) {
-                            if ($designation->department_id == $department->id) {
-                                $departmentName = $department->name;
-                                break; 
-                            }
-                        }
-                    @endphp
-                    <td>{{ $departmentName }}</td>
-
+                    <td>{{ $designation->department->name }}</td>
                     <td>
-                        <a href="/designations/{{ $designation->id }}/edit" class="btn btn-warning btn-sm">Edit</a>
-                        <form action="/designations/{{ $designation->id }}" method="POST" style="display:inline;">
+                        <a href="/desig/{{ $designation->id }}/edit" class="btn btn-warning btn-sm">Edit</a>
+                        <form action="/desig/{{ $designation->id }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm">Delete</button>

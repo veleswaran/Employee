@@ -49,7 +49,8 @@ class DepartmentController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $department = Department::find($id);
+        return view("department.edit",compact("department"));
     }
 
     /**
@@ -57,7 +58,11 @@ class DepartmentController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $dept = Department::find($id);
+        $dept->name =$request->name;
+        $dept->description = $request->description;
+        $dept->save();
+        return redirect('dept');
     }
 
     /**

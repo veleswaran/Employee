@@ -46,8 +46,8 @@
                         @endif
                     </td>
                     <td>
-                        <a href="/employees/{{ $employee->id }}/edit" class="btn btn-warning btn-sm">Edit</a>
-                        <form action="/employees/{{ $employee->id }}" method="POST" style="display:inline;">
+                        <a href="/emp/{{ $employee->id }}/edit" class="btn btn-warning btn-sm">Edit</a>
+                        <form action="/emp/{{ $employee->id }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm">Delete</button>

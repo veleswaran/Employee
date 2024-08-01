@@ -14,8 +14,7 @@ class DesignationController extends Controller
     public function index()
     {
         $desig = Designation::get();
-        $dept = Department::get();
-        return view("designation.list",compact("desig","dept"));
+        return view("designation.list",compact("desig"));
     }
 
     /**
@@ -46,7 +45,7 @@ class DesignationController extends Controller
     public function show(string $id)
     {
         $desig = Designation::where(["department_id"=>$id])->get();
-        return $desig;
+        return response()->json($desig);
     }
 
     /**
@@ -62,7 +61,12 @@ class DesignationController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $desig =  Designation::find($id);
+        $desig->name =$request->name;
+        $desig->description = $request->description;
+        $desig->department_id = $request->department_id;
+        $desig->save();
+        return redirect('desig');
     }
 
     /**
@@ -70,6 +74,8 @@ class DesignationController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $desig =  Designation::find($id);
+        $desig->delete();
+        return redirect("desig");
     }
 }

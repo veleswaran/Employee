@@ -26,7 +26,7 @@
                     <td>{{$dept->name}}</td>
                     <td>{{$dept->description}}</td>
                     <td>
-                        <a href="/departments/1/edit" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="/dept/1/edit" class="btn btn-warning btn-sm">Edit</a>
                         <form action="/dept/1" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')

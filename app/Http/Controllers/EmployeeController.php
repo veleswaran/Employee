@@ -14,10 +14,9 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $desig = Designation::get();
-        $dept = Department::get();
+        
         $emp = Employee::get();
-        return view("employee.list",compact("desig","dept","emp"));
+        return view("employee.list",compact("emp"));
     }
 
     /**
@@ -34,21 +33,21 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        $desig = new Employee();
-        $desig->name =$request->name;
-        $desig->email = $request->email;
-        $desig->dob =$request->dob;
-        $desig->gender = $request->gender;
-        $desig->doj =$request->doj;
-        $desig->address = $request->address;
-        $desig->mobile =$request->mobile;
+        $emp = new Employee();
+        $emp->name =$request->name;
+        $emp->email = $request->email;
+        $emp->dob =$request->dob;
+        $emp->gender = $request->gender;
+        $emp->doj =$request->doj;
+        $emp->address = $request->address;
+        $emp->mobile =$request->mobile;
         $img = $request->file("image");
         $filename = uniqid().".".$img->getClientOriginalExtension();
         $img->storeAs("public/images",$filename);
-        $desig->image = "images/".$filename;
-        $desig->department_id = $request->department_id;
-        $desig->designation_id = $request->designation_id;
-        $desig->save();
+        $emp->image = "images/".$filename;
+        $emp->department_id = $request->department_id;
+        $emp->designation_id = $request->designation_id;
+        $emp->save();
         return redirect('emp');
     }
 
@@ -73,7 +72,22 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $emp = Employee::find($id);
+        $emp->name =$request->name;
+        $emp->email = $request->email;
+        $emp->dob =$request->dob;
+        $emp->gender = $request->gender;
+        $emp->doj =$request->doj;
+        $emp->address = $request->address;
+        $emp->mobile =$request->mobile;
+        $img = $request->file("image");
+        $filename = uniqid().".".$img->getClientOriginalExtension();
+        $img->storeAs("public/images",$filename);
+        $emp->image = "images/".$filename;
+        $emp->department_id = $request->department_id;
+        $emp->designation_id = $request->designation_id;
+        $emp->save();
+        return redirect('emp');
     }
 
     /**
@@ -81,6 +95,8 @@ class EmployeeController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $emp = Employee::find($id);
+        $emp->save();
+        return redirect('emp');
     }
 }

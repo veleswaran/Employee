@@ -43,7 +43,7 @@
             <div class="mb-3" id="desig" style="display: none;">
                 <label for="designation_id" class="form-label">Designation</label>
                 <select class="form-select" id="designation_id" name="designation_id" required>
-                
+
                 </select>
 
             </div>
@@ -83,21 +83,19 @@
     </div>
     <script>
         document.getElementById("department_id").addEventListener("change", () => {
-            
-            document.getElementById("desig").style.display="block"
+            document.getElementById("desig").style.display = "block"
             let id = document.getElementById("department_id").value;
-            console.log(id)
-            fetch(`http://localhost:8000/desig/${id}`)
+            fetch(`/desig/${id}`)
                 .then(res => res.json())
                 .then(data => {
-                    let optin =`<option value="" disabled selected>Select a designation</option>`;
-                    for (let i =0;i<data.length;i++){
-                        optin+=`<option value="${data[i]["id"]}">${data[i]["name"]}</option>`
+                    let optin = `<option value="" disabled selected>Select a designation</option>`;
+                    for (let i = 0; i < data.length; i++) {
+                        optin += `<option value="${data[i]["id"]}">${data[i]["name"]}</option>`
                     }
-                    console.log(optin)
-                    document.getElementById("designation_id").innerHTML=optin
+                    document.getElementById("designation_id").innerHTML = optin
                 })
         })
+      
     </script>
 </body>
 
